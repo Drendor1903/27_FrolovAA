@@ -20,6 +20,7 @@ dependencies {
     compileOnly group: 'com.consol.citrus', name: 'citrus-spring', version: '3.4.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 
+    //Последующие зависимости были добавлены для исправления предупреждений
     implementation group: 'org.eclipse.jetty', name: 'jetty-http', version: '12.0.16'
     implementation group: 'org.eclipse.jetty', name: 'jetty-server', version: '12.0.16'
 
