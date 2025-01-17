@@ -10,10 +10,42 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'com.consol.citrus', name: 'citrus-base', version: '3.4.0'
+    testImplementation group: 'com.consol.citrus', name: 'citrus-testng', version: '3.4.0'
+    testImplementation group: 'com.consol.citrus', name: 'citrus-http', version: '3.4.0'
+    testImplementation group: 'com.consol.citrus', name: 'citrus-validation-json', version: '3.4.0'
+    testImplementation group: 'org.slf4j', name: 'slf4j-reload4j', version: '2.0.7'
+
+    compileOnly group: 'com.consol.citrus', name: 'citrus-spring', version: '3.4.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+
+    implementation group: 'org.eclipse.jetty', name: 'jetty-http', version: '12.0.16'
+    implementation group: 'org.eclipse.jetty', name: 'jetty-server', version: '12.0.16'
+
+    implementation group: 'org.springframework', name: 'spring-web', version: '6.1.16'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.1.16'
+    implementation group: 'org.springframework', name: 'spring-context', version: '6.1.16'
+    implementation group: 'org.springframework', name: 'spring-expression', version: '6.1.16'
+
+    implementation group: 'com.google.guava', name: 'guava', version: '33.3.1-jre'
+
+    implementation group: 'com.jayway.jsonpath', name: 'json-path', version: '2.9.0'
+
+    implementation group: 'net.minidev', name: 'json-smart', version: '2.5.1'
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG() {
+        parallel = "classes"
+        threadCount = 4
+        useDefaultListeners = true
+    }
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+        exceptionFormat "FULL"
+        showExceptions true
+        showStandardStreams true
+    }
 }
