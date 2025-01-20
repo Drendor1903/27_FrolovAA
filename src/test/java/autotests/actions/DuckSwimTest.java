@@ -31,9 +31,6 @@ public class DuckSwimTest extends TestNGCitrusSpringSupport {
 
         duckSwim(runner, "${duckId}");
         validateResponse(runner, "{\n" + "  \"message\": \"I'm swimming\"\n" + "}");
-
-        extractDataFromResponse(runner);
-        runner.$(echo("test variables: \"${errorMessage}\" and \"${type}\""));
     }
 
     @Test(description = "Проверка может ли уточка с не существующим Id плавать")
@@ -92,17 +89,5 @@ public class DuckSwimTest extends TestNGCitrusSpringSupport {
                         .message()
                         .type(MessageType.JSON)
                         .validate(body));
-    }
-
-    public void extractDataFromResponse(TestCaseRunner runner){
-        runner.$(
-                http()
-                        .client("http://localhost:2222")
-                        .receive()
-                        .response(HttpStatus.NOT_FOUND)
-                        .message()
-                        .type(MessageType.JSON)
-                        .extract(fromBody().expression("$.message", "errorMessage"))
-                        .extract(fromHeaders().header("contentType", "type")));
     }
 }
