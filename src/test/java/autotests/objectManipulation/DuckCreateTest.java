@@ -18,16 +18,20 @@ public class DuckCreateTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulCreateDuckWithMaterialRubber(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-
-        saveDuck(runner);
+        validateResponseCreate(runner, "{" + "  \"id\": " + "${duckId}" + ","
+                + "  \"color\": \"" + "yellow" + "\","
+                + "  \"height\": " + 0.15 + ","
+                + "  \"material\": \"" + "rubber" + "\","
+                + "  \"sound\": \"" + "quack" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
+                + "\"" + "}");
 
         duckProperties(runner, "${duckId}");
-
-        validateResponse(runner, "{" + "  \"color\": \"" + "${duckColor}" + "\","
-                + "  \"height\": " + "${duckHeight}" + ","
-                + "  \"material\": \"" + "${duckMaterial}" + "\","
-                + "  \"sound\": \"" + "${duckSound}" + "\","
-                + "  \"wingsState\": \"" + "${duckWingsState}"
+        validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
+                + "  \"height\": " + 0.15 + ","
+                + "  \"material\": \"" + "rubber" + "\","
+                + "  \"sound\": \"" + "quack" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
                 + "\"" + "}");
     }
 
@@ -35,16 +39,20 @@ public class DuckCreateTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulCreateDuckWithMaterialWood(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "wood", "quack", "ACTIVE");
-
-        saveDuck(runner);
+        validateResponseCreate(runner, "{" + "  \"id\": " + "${duckId}" + ","
+                + "  \"color\": \"" + "yellow" + "\","
+                + "  \"height\": " + 0.15 + ","
+                + "  \"material\": \"" + "wood" + "\","
+                + "  \"sound\": \"" + "quack" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
+                + "\"" + "}");
 
         duckProperties(runner, "${duckId}");
-
-        validateResponse(runner, "{" + "  \"color\": \"" + "${duckColor}" + "\","
-                + "  \"height\": " + "${duckHeight}" + ","
-                + "  \"material\": \"" + "${duckMaterial}" + "\","
-                + "  \"sound\": \"" + "${duckSound}" + "\","
-                + "  \"wingsState\": \"" + "${duckWingsState}"
+        validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
+                + "  \"height\": " + 0.15 + ","
+                + "  \"material\": \"" + "wood" + "\","
+                + "  \"sound\": \"" + "quack" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
                 + "\"" + "}");
     }
 
@@ -55,6 +63,16 @@ public class DuckCreateTest extends TestNGCitrusSpringSupport {
                 .message()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(responseMessage));
+    }
+
+    public void validateResponseCreate(TestCaseRunner runner, String messageBody) {
+        runner.$(http().client("http://localhost:2222")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .extract(fromBody().expression("$.id", "duckId"))
+                .body(messageBody));
     }
 
     public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
@@ -70,19 +88,6 @@ public class DuckCreateTest extends TestNGCitrusSpringSupport {
                                 + "  \"sound\": \"" + sound + "\",\n"
                                 + "  \"wingsState\": \"" + wingsState
                                 + "\"\n" + "}"));
-    }
-
-    public void saveDuck(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId"))
-                .extract(fromBody().expression("$.color", "duckColor"))
-                .extract(fromBody().expression("$.height", "duckHeight"))
-                .extract(fromBody().expression("$.material", "duckMaterial"))
-                .extract(fromBody().expression("$.sound", "duckSound"))
-                .extract(fromBody().expression("$.wingsState", "duckWingsState")));
     }
 
     public void duckProperties(TestCaseRunner runner, String id) {
