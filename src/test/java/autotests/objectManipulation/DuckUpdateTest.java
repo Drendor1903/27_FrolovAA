@@ -1,4 +1,4 @@
-package autotests.controller;
+package autotests.objectManipulation;
 
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
@@ -14,34 +14,42 @@ import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
 public class DuckUpdateTest extends TestNGCitrusSpringSupport {
 
-    @Test(description = "Изменение цвета и высоты уточки")
+    @Test(description = "Обновление данных цвета и размера уточки")
     @CitrusTest
     public void successfulUpdateDuckWithColorAndHeight(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
 
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
+        saveDuckId(runner);
 
-        updateDuck(runner, "${duckId}", "gray", 1.11, "rubber", "quack", "ACTIVE");
+        updateDuck(runner, "${duckId}", "gray", 0.11, "rubber", "quack", "ACTIVE");
         validateResponse(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
+
+        duckProperties(runner, "${duckId}");
+        validateResponse(runner, "{" + "  \"color\": \"" + "gray" + "\","
+                + "  \"height\": " + 0.11 + ","
+                + "  \"material\": \"" + "rubber" + "\","
+                + "  \"sound\": \"" + "quack" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
+                + "\"" + "}");
     }
 
-    @Test(description = "Изменение цвета и звука уточки")
+    @Test(description = "Обновление данных цвета и звука уточки")
     @CitrusTest
     public void successfulUpdateDuckWithColorAndSound(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
 
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
+        saveDuckId(runner);
 
         updateDuck(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
         validateResponse(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
+
+        duckProperties(runner, "${duckId}");
+        validateResponse(runner, "{" + "  \"color\": \"" + "gray" + "\","
+                + "  \"height\": " + 0.15 + ","
+                + "  \"material\": \"" + "rubber" + "\","
+                + "  \"sound\": \"" + "meow" + "\","
+                + "  \"wingsState\": \"" + "ACTIVE"
+                + "\"" + "}");
     }
 
     public void updateDuck(TestCaseRunner runner, String id, String color, double height, String material, String sound, String wingsState) {
@@ -80,6 +88,21 @@ public class DuckUpdateTest extends TestNGCitrusSpringSupport {
                                 + "  \"sound\": \"" + sound + "\",\n"
                                 + "  \"wingsState\": \"" + wingsState
                                 + "\"\n" + "}"));
+    }
+
+    public void duckProperties(TestCaseRunner runner, String id) {
+        runner.$(http().client("http://localhost:2222")
+                .send()
+                .get("/api/duck/action/properties")
+                .queryParam("id", id));
+    }
+
+    public void saveDuckId(TestCaseRunner runner) {
+        runner.$(http().client("http://localhost:2222")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .extract(fromBody().expression("$.id", "duckId")));
     }
 
 }

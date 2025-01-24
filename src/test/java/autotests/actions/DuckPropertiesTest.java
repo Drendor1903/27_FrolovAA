@@ -16,25 +16,19 @@ import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
 public class DuckPropertiesTest extends TestNGCitrusSpringSupport {
 
-    @Test(description = "Получение параметров уточки из материала - rubber")
+    @Test(description = "Получение параметров уточки из материала rubber и с нечетным Id")
     @CitrusTest
     public void successfulGetPropertiesWithMaterialRubber(@Optional @CitrusResource TestCaseRunner runner) {
         AtomicInteger id = new AtomicInteger();
-        while (true){
+
+        do {
             createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-            runner.$(http().client("http://localhost:2222")
-                    .receive()
-                    .response(HttpStatus.OK)
-                    .message()
-                    .extract(fromBody().expression("$.id", "duckId")));
+
+            saveDuckId(runner);
 
             runner.$(action -> id.set(Integer.parseInt(action.getVariable("duckId"))));
 
-            if (id.get() % 2 != 0) {
-                break;
-            }
-
-        }
+        } while (id.get() % 2 == 0);
 
         duckProperties(runner, "${duckId}");
         validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
@@ -45,25 +39,20 @@ public class DuckPropertiesTest extends TestNGCitrusSpringSupport {
                 + "\"" + "}");
     }
 
-    @Test(description = "Получение параметров уточки из материала - wood")
+    @Test(description = "Получение параметров уточки из материала wood и с четным Id")
     @CitrusTest
     public void successfulGetPropertiesWithMaterialWood(@Optional @CitrusResource TestCaseRunner runner) {
         AtomicInteger id = new AtomicInteger();
-        while (true){
+
+        do {
             createDuck(runner, "yellow", 0.15, "wood", "quack", "ACTIVE");
-            runner.$(http().client("http://localhost:2222")
-                    .receive()
-                    .response(HttpStatus.OK)
-                    .message()
-                    .extract(fromBody().expression("$.id", "duckId")));
+
+            saveDuckId(runner);
 
             runner.$(action -> id.set(Integer.parseInt(action.getVariable("duckId"))));
 
-            if (id.get() % 2 == 0) {
-                break;
-            }
+        } while (id.get() % 2 != 0);
 
-        }
         duckProperties(runner, "${duckId}");
         validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
                 + "  \"height\": " + 0.15 + ","
@@ -102,5 +91,13 @@ public class DuckPropertiesTest extends TestNGCitrusSpringSupport {
                                 + "  \"sound\": \"" + sound + "\",\n"
                                 + "  \"wingsState\": \"" + wingsState
                                 + "\"\n" + "}"));
+    }
+
+    public void saveDuckId(TestCaseRunner runner) {
+        runner.$(http().client("http://localhost:2222")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .extract(fromBody().expression("$.id", "duckId")));
     }
 }

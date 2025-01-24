@@ -18,11 +18,9 @@ public class DuckFlyTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulFlyWithActiveWings(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
+
+        saveDuckId(runner);
+
         duckFly(runner, "${duckId}");
         validateResponse(runner, "{\n" + "  \"message\": \"I am flying :)\"\n" + "}");
     }
@@ -31,11 +29,9 @@ public class DuckFlyTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulFlyWithFixedWings(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "FIXED");
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
+
+        saveDuckId(runner);
+
         duckFly(runner, "${duckId}");
         validateResponse(runner, "{\n" + "  \"message\": \"I can not fly :C\"\n" + "}");
     }
@@ -44,11 +40,9 @@ public class DuckFlyTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulFlyWithUndefinedWings(@Optional @CitrusResource TestCaseRunner runner) {
         createDuck(runner, "yellow", 0.15, "rubber", "quack", "UNDEFINED");
-        runner.$(http().client("http://localhost:2222")
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
+
+        saveDuckId(runner);
+
         duckFly(runner, "${duckId}");
         validateResponse(runner, "{\n" + "  \"message\": \"Wings are not detected :(\"\n" + "}");
     }
@@ -82,5 +76,13 @@ public class DuckFlyTest extends TestNGCitrusSpringSupport {
                                 + "  \"sound\": \"" + sound + "\",\n"
                                 + "  \"wingsState\": \"" + wingsState
                                 + "\"\n" + "}"));
+    }
+
+    public void saveDuckId(TestCaseRunner runner) {
+        runner.$(http().client("http://localhost:2222")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .extract(fromBody().expression("$.id", "duckId")));
     }
 }

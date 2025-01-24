@@ -20,25 +20,17 @@ public class DuckQuackTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulQuackWithOddId(@Optional @CitrusResource TestCaseRunner runner) {
         AtomicInteger id = new AtomicInteger();
-        while (true){
+
+        do {
             createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-            runner.$(http().client("http://localhost:2222")
-                    .receive()
-                    .response(HttpStatus.OK)
-                    .message()
-                    .extract(fromBody().expression("$.id", "duckId")));
 
-            runner.$(action -> {
-                id.set(Integer.parseInt(action.getVariable("duckId")));
-            });
+            saveDuckId(runner);
 
-            if (id.get() % 2 != 0) {
-                break;
-            }
+            runner.$(action -> id.set(Integer.parseInt(action.getVariable("duckId"))));
 
-        }
+        } while (id.get() % 2 == 0);
 
-        duckQuack(runner, "${duckId}",3,2);
+        duckQuack(runner, "${duckId}", 3, 2);
         validateResponse(runner, "{\n" + "  \"sound\": \"quack-quack-quack, quack-quack-quack\"\n" + "}");
     }
 
@@ -46,22 +38,15 @@ public class DuckQuackTest extends TestNGCitrusSpringSupport {
     @CitrusTest
     public void successfulQuackWithEvenId(@Optional @CitrusResource TestCaseRunner runner) {
         AtomicInteger id = new AtomicInteger();
-        while (true){
+        do {
             createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-            runner.$(http().client("http://localhost:2222")
-                    .receive()
-                    .response(HttpStatus.OK)
-                    .message()
-                    .extract(fromBody().expression("$.id", "duckId")));
 
-            runner.$(action -> {
-                id.set(Integer.parseInt(action.getVariable("duckId")));
-            });
+            saveDuckId(runner);
 
-            if (id.get() % 2 == 0) {
-                break;
-            }
-        }
+            runner.$(action -> id.set(Integer.parseInt(action.getVariable("duckId"))));
+
+        } while (id.get() % 2 != 0);
+
         duckQuack(runner, "${duckId}", 3, 2);
         validateResponse(runner, "{\n" + "  \"sound\": \"quack-quack-quack, quack-quack-quack\"\n" + "}");
     }
@@ -97,5 +82,13 @@ public class DuckQuackTest extends TestNGCitrusSpringSupport {
                                 + "  \"sound\": \"" + sound + "\",\n"
                                 + "  \"wingsState\": \"" + wingsState
                                 + "\"\n" + "}"));
+    }
+
+    public void saveDuckId(TestCaseRunner runner) {
+        runner.$(http().client("http://localhost:2222")
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .extract(fromBody().expression("$.id", "duckId")));
     }
 }
