@@ -1,6 +1,8 @@
 package autotests.tests.actions;
 
 import autotests.clients.DuckActionsClient;
+import autotests.payloads.Duck;
+import autotests.payloads.WingsState;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -14,10 +16,17 @@ public class DuckPropertiesTest extends DuckActionsClient {
     @Test(description = "Получение параметров уточки из материала rubber и с нечетным Id")
     @CitrusTest
     public void successfulGetPropertiesWithMaterialRubber(@Optional @CitrusResource TestCaseRunner runner) {
+        Duck duck = new Duck()
+                .color("yellow")
+                .height(0.15)
+                .material("rubber")
+                .sound("quack")
+                .wingsState(WingsState.ACTIVE);
+
         AtomicInteger id = new AtomicInteger();
 
         do {
-            createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
+            createDuck(runner, duck);
 
             saveDuckId(runner);
 
@@ -26,7 +35,7 @@ public class DuckPropertiesTest extends DuckActionsClient {
         } while (id.get() % 2 == 0);
 
         duckProperties(runner, "${duckId}");
-        validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
+        validateResponseString(runner, "{" + "  \"color\": \"" + "yellow" + "\","
                 + "  \"height\": " + 0.15 + ","
                 + "  \"material\": \"" + "rubber" + "\","
                 + "  \"sound\": \"" + "quack" + "\","
@@ -37,10 +46,17 @@ public class DuckPropertiesTest extends DuckActionsClient {
     @Test(description = "Получение параметров уточки из материала wood и с четным Id")
     @CitrusTest
     public void successfulGetPropertiesWithMaterialWood(@Optional @CitrusResource TestCaseRunner runner) {
+        Duck duck = new Duck()
+                .color("yellow")
+                .height(0.15)
+                .material("wood")
+                .sound("quack")
+                .wingsState(WingsState.ACTIVE);
+
         AtomicInteger id = new AtomicInteger();
 
         do {
-            createDuck(runner, "yellow", 0.15, "wood", "quack", "ACTIVE");
+            createDuck(runner, duck);
 
             saveDuckId(runner);
 
@@ -49,11 +65,6 @@ public class DuckPropertiesTest extends DuckActionsClient {
         } while (id.get() % 2 != 0);
 
         duckProperties(runner, "${duckId}");
-        validateResponse(runner, "{" + "  \"color\": \"" + "yellow" + "\","
-                + "  \"height\": " + 0.15 + ","
-                + "  \"material\": \"" + "wood" + "\","
-                + "  \"sound\": \"" + "quack" + "\","
-                + "  \"wingsState\": \"" + "ACTIVE"
-                + "\"" + "}");
+        validateResponsePayload(runner, duck);
     }
 }
