@@ -1,6 +1,7 @@
 package autotests.clients;
 
 import autotests.EndpointConfig;
+import autotests.payloads.Duck;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
@@ -21,17 +22,17 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
     @Autowired
     protected HttpClient duckService;
 
-    public void updateDuck(TestCaseRunner runner, String id, String color, double height, String material, String sound, String wingsState) {
+    public void updateDuck(TestCaseRunner runner, String id, Duck duck) {
         runner.$(
                 http().client("http://localhost:2222")
                         .send()
                         .put("/api/duck/update")
                         .queryParam("id", id)
-                        .queryParam("color", color)
-                        .queryParam("height", Double.toString(height))
-                        .queryParam("material", material)
-                        .queryParam("sound", sound)
-                        .queryParam("wingsState", wingsState));
+                        .queryParam("color", duck.color())
+                        .queryParam("height", Double.toString(duck.height()))
+                        .queryParam("material", duck.material())
+                        .queryParam("sound", duck.sound())
+                        .queryParam("wingsState", String.valueOf(duck.wingsState())));
     }
 
     public void validateResponseString(TestCaseRunner runner, String responseMessage) {

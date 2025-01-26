@@ -27,7 +27,7 @@ public class DuckUpdateTest extends DuckUpdateClient {
 
         duck.color("gray").height(0.11);
 
-        updateDuck(runner, "${duckId}", "gray", 0.11, "rubber", "quack", "ACTIVE");
+        updateDuck(runner, "${duckId}", duck);
         validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
 
         duckProperties(runner, "${duckId}");
@@ -48,7 +48,9 @@ public class DuckUpdateTest extends DuckUpdateClient {
 
         saveDuckId(runner);
 
-        updateDuck(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
+        duck.color("gray").sound("meow");
+
+        updateDuck(runner, "${duckId}", duck);
         validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
 
         duckProperties(runner, "${duckId}");

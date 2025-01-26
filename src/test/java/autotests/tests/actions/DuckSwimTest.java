@@ -19,7 +19,7 @@ public class DuckSwimTest extends DuckActionsClient {
                 .height(0.15)
                 .material("rubber")
                 .sound("quack")
-                .wingsState(WingsState.ACTIVE);
+                .wingsState(WingsState.FIXED);
 
         createDuck(runner, duck);
 
