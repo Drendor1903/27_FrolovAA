@@ -24,7 +24,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void updateDuck(TestCaseRunner runner, String id, Duck duck) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .put("/api/duck/update")
                         .queryParam("id", id)
@@ -37,7 +37,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void validateResponseString(TestCaseRunner runner, String responseMessage) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .receive()
                         .response(HttpStatus.OK)
                         .message()
@@ -47,7 +47,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void validateResponseResources(TestCaseRunner runner, String responseMessage) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .receive()
                         .response(HttpStatus.OK)
                         .message()
@@ -57,7 +57,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void validateResponsePayload(TestCaseRunner runner, Object body) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .receive()
                         .response(HttpStatus.OK)
                         .message()
@@ -67,7 +67,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void createDuck(TestCaseRunner runner, Object body) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
@@ -76,14 +76,14 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
     }
 
     public void duckProperties(TestCaseRunner runner, String id) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .send()
                 .get("/api/duck/action/properties")
                 .queryParam("id", id));
     }
 
     public void saveDuckId(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()

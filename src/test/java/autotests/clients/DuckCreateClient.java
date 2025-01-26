@@ -1,7 +1,6 @@
 package autotests.clients;
 
 import autotests.EndpointConfig;
-import autotests.payloads.Duck;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
@@ -23,7 +22,7 @@ public class DuckCreateClient extends TestNGCitrusSpringSupport {
     protected HttpClient duckService;
 
     public void validateResponsePayload(TestCaseRunner runner, Object body) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -32,7 +31,7 @@ public class DuckCreateClient extends TestNGCitrusSpringSupport {
     }
 
     public void validateResponseResources(TestCaseRunner runner, String responseMessage) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -41,7 +40,7 @@ public class DuckCreateClient extends TestNGCitrusSpringSupport {
     }
 
     public void validateResponseCreateString(TestCaseRunner runner, String messageBody) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -52,7 +51,7 @@ public class DuckCreateClient extends TestNGCitrusSpringSupport {
 
     public void createDuck(TestCaseRunner runner, Object body) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
@@ -61,7 +60,7 @@ public class DuckCreateClient extends TestNGCitrusSpringSupport {
     }
 
     public void duckProperties(TestCaseRunner runner, String id) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .send()
                 .get("/api/duck/action/properties")
                 .queryParam("id", id));
