@@ -24,14 +24,14 @@ public class DuckDeleteClient extends TestNGCitrusSpringSupport {
 
     public void deleteDuck(TestCaseRunner runner, String id) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .delete("/api/duck/delete")
                         .queryParam("id", id));
     }
 
     public void validateResponse(TestCaseRunner runner, String responseMessage) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -60,13 +60,13 @@ public class DuckDeleteClient extends TestNGCitrusSpringSupport {
 
     public void getAllDucksIds(TestCaseRunner runner) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .get("/api/duck/getAllIds"));
     }
 
     public void saveAllDucksIds(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -90,7 +90,7 @@ public class DuckDeleteClient extends TestNGCitrusSpringSupport {
 
     public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
@@ -104,7 +104,7 @@ public class DuckDeleteClient extends TestNGCitrusSpringSupport {
     }
 
     public void saveDuckId(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()

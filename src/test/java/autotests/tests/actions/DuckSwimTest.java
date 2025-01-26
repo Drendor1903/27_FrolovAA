@@ -1,13 +1,13 @@
 package autotests.tests.actions;
 
-import autotests.clients.DuckSwimClient;
+import autotests.clients.DuckActionsClient;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 
-public class DuckSwimTest extends DuckSwimClient {
+public class DuckSwimTest extends DuckActionsClient {
 
     @Test(description = "Проверка может ли уточка с существующим Id плавать")
     @CitrusTest

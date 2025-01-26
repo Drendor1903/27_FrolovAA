@@ -20,7 +20,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void updateDuck(TestCaseRunner runner, String id, String color, double height, String material, String sound, String wingsState) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .put("/api/duck/update")
                         .queryParam("id", id)
@@ -33,7 +33,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void validateResponse(TestCaseRunner runner, String responseMessage) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .receive()
                         .response(HttpStatus.OK)
                         .message()
@@ -43,7 +43,7 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
 
     public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
@@ -57,14 +57,14 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
     }
 
     public void duckProperties(TestCaseRunner runner, String id) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .send()
                 .get("/api/duck/action/properties")
                 .queryParam("id", id));
     }
 
     public void saveDuckId(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()

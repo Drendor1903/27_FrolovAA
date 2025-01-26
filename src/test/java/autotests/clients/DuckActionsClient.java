@@ -35,6 +35,14 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .body(responseMessage));
     }
 
+    public void validateResponseWithNotExistingId(TestCaseRunner runner) {
+        runner.$(
+                http()
+                        .client(duckService)
+                        .receive()
+                        .response(HttpStatus.NOT_FOUND));
+    }
+
     public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
         runner.$(
                 http().client(duckService)
@@ -70,6 +78,13 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
         runner.$(http().client(duckService)
                 .send()
                 .get("/api/duck/action/fly")
+                .queryParam("id", id));
+    }
+
+    public void duckSwim(TestCaseRunner runner, String id) {
+        runner.$(http().client(duckService)
+                .send()
+                .get("/api/duck/action/swim")
                 .queryParam("id", id));
     }
 }
