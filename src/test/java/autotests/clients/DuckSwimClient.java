@@ -26,7 +26,7 @@ public class DuckSwimClient extends TestNGCitrusSpringSupport {
     }
 
     public void validateResponse(TestCaseRunner runner, String responseMessage) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -37,7 +37,7 @@ public class DuckSwimClient extends TestNGCitrusSpringSupport {
     public void validateResponseWithNotExistingId(TestCaseRunner runner) {
         runner.$(
                 http()
-                        .client("http://localhost:2222")
+                        .client(duckService)
                         .receive()
                         .response(HttpStatus.NOT_FOUND));
     }
@@ -58,7 +58,7 @@ public class DuckSwimClient extends TestNGCitrusSpringSupport {
     }
 
     public void duckSwim(TestCaseRunner runner, String id) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .send()
                 .get("/api/duck/action/swim")
                 .queryParam("id", id));
