@@ -3,8 +3,11 @@ package autotests.clients;
 import autotests.EndpointConfig;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.http.client.HttpClient;
+import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,13 +29,40 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .extract(fromBody().expression("$.id", "duckId")));
     }
 
-    public void validateResponse(TestCaseRunner runner, String responseMessage) {
+    public void validateResponseString(TestCaseRunner runner, String responseMessage) {
         runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(responseMessage));
+    }
+
+    public void validateResponseResource(TestCaseRunner runner, String responseMessage) {
+        runner.$(http().client(duckService)
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(new ClassPathResource(responseMessage)));
+    }
+
+    public void validateResponsePayload(TestCaseRunner runner, Object body) {
+        runner.$(http().client(duckService)
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
+    }
+
+    public void validateResponseWingsUndefined(TestCaseRunner runner, Object body) {
+        runner.$(http().client(duckService)
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
     public void validateResponseWithNotExistingId(TestCaseRunner runner) {
@@ -43,19 +73,14 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                         .response(HttpStatus.NOT_FOUND));
     }
 
-    public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
+    public void createDuck(TestCaseRunner runner, Object body) {
         runner.$(
                 http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .body("{\n" + "  \"color\": \"" + color + "\",\n"
-                                + "  \"height\": " + height + ",\n"
-                                + "  \"material\": \"" + material + "\",\n"
-                                + "  \"sound\": \"" + sound + "\",\n"
-                                + "  \"wingsState\": \"" + wingsState
-                                + "\"\n" + "}"));
+                        .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
     public void duckQuack(TestCaseRunner runner, String id, int repetitionCount, int soundCount) {

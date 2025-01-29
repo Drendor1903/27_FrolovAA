@@ -1,6 +1,8 @@
 package autotests.tests.objectManipulation;
 
 import autotests.clients.DuckUpdateClient;
+import autotests.payloads.Duck;
+import autotests.payloads.WingsState;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
@@ -12,38 +14,46 @@ public class DuckUpdateTest extends DuckUpdateClient {
     @Test(description = "Обновление данных цвета и размера уточки")
     @CitrusTest
     public void successfulUpdateDuckWithColorAndHeight(@Optional @CitrusResource TestCaseRunner runner) {
-        createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
+        Duck duck = new Duck()
+                .color("yellow")
+                .height(0.15)
+                .material("rubber")
+                .sound("quack")
+                .wingsState(WingsState.ACTIVE);
+
+        createDuck(runner, duck);
 
         saveDuckId(runner);
 
-        updateDuck(runner, "${duckId}", "gray", 0.11, "rubber", "quack", "ACTIVE");
-        validateResponse(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
+        duck.color("gray").height(0.11);
+
+        updateDuck(runner, "${duckId}", duck);
+        validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
 
         duckProperties(runner, "${duckId}");
-        validateResponse(runner, "{" + "  \"color\": \"" + "gray" + "\","
-                + "  \"height\": " + 0.11 + ","
-                + "  \"material\": \"" + "rubber" + "\","
-                + "  \"sound\": \"" + "quack" + "\","
-                + "  \"wingsState\": \"" + "ACTIVE"
-                + "\"" + "}");
+        validateResponsePayload(runner, duck);
     }
 
     @Test(description = "Обновление данных цвета и звука уточки")
     @CitrusTest
     public void successfulUpdateDuckWithColorAndSound(@Optional @CitrusResource TestCaseRunner runner) {
-        createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
+        Duck duck = new Duck()
+                .color("yellow")
+                .height(0.15)
+                .material("rubber")
+                .sound("quack")
+                .wingsState(WingsState.ACTIVE);
+
+        createDuck(runner, duck);
 
         saveDuckId(runner);
 
-        updateDuck(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
-        validateResponse(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
+        duck.color("gray").sound("meow");
+
+        updateDuck(runner, "${duckId}", duck);
+        validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
 
         duckProperties(runner, "${duckId}");
-        validateResponse(runner, "{" + "  \"color\": \"" + "gray" + "\","
-                + "  \"height\": " + 0.15 + ","
-                + "  \"material\": \"" + "rubber" + "\","
-                + "  \"sound\": \"" + "meow" + "\","
-                + "  \"wingsState\": \"" + "ACTIVE"
-                + "\"" + "}");
+        validateResponseResources(runner, "duckUpdateTest/validateUpdateDuck.json");
     }
 }
