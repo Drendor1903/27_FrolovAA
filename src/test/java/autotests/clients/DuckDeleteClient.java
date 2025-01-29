@@ -1,13 +1,13 @@
-package autotests.objectManipulation;
+package autotests.clients;
 
+import autotests.EndpointConfig;
 import com.consol.citrus.TestCaseRunner;
-import com.consol.citrus.annotations.CitrusResource;
-import com.consol.citrus.annotations.CitrusTest;
+import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Test;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,30 +16,22 @@ import java.util.concurrent.atomic.AtomicReference;
 import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
-public class DuckDeleteTest extends TestNGCitrusSpringSupport {
+@ContextConfiguration(classes = {EndpointConfig.class})
+public class DuckDeleteClient extends TestNGCitrusSpringSupport {
 
-    @Test(description = "Удаление уточки")
-    @CitrusTest
-    public void successfulDeleteDuck(@Optional @CitrusResource TestCaseRunner runner) {
-        createDuck(runner, "yellow", 0.15, "rubber", "quack", "ACTIVE");
-
-        saveDuckId(runner);
-
-        deleteDuck(runner, "${duckId}");
-        validateResponse(runner, "{\n" + "  \"message\": \"Duck is deleted\"\n" + "}");
-        validateDeleteDuck(runner);
-    }
+    @Autowired
+    protected HttpClient duckService;
 
     public void deleteDuck(TestCaseRunner runner, String id) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .delete("/api/duck/delete")
                         .queryParam("id", id));
     }
 
     public void validateResponse(TestCaseRunner runner, String responseMessage) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -68,13 +60,13 @@ public class DuckDeleteTest extends TestNGCitrusSpringSupport {
 
     public void getAllDucksIds(TestCaseRunner runner) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .get("/api/duck/getAllIds"));
     }
 
     public void saveAllDucksIds(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
@@ -98,7 +90,7 @@ public class DuckDeleteTest extends TestNGCitrusSpringSupport {
 
     public void createDuck(TestCaseRunner runner, String color, double height, String material, String sound, String wingsState) {
         runner.$(
-                http().client("http://localhost:2222")
+                http().client(duckService)
                         .send()
                         .post("/api/duck/create")
                         .message()
@@ -112,7 +104,7 @@ public class DuckDeleteTest extends TestNGCitrusSpringSupport {
     }
 
     public void saveDuckId(TestCaseRunner runner) {
-        runner.$(http().client("http://localhost:2222")
+        runner.$(http().client(duckService)
                 .receive()
                 .response(HttpStatus.OK)
                 .message()
