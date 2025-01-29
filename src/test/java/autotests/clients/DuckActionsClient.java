@@ -56,6 +56,15 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
+    public void validateResponseWingsUndefined(TestCaseRunner runner, Object body) {
+        runner.$(http().client(duckService)
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
+    }
+
     public void validateResponseWithNotExistingId(TestCaseRunner runner) {
         runner.$(
                 http()

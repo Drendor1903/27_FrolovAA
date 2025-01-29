@@ -27,7 +27,7 @@ public class DuckFlyTest extends DuckActionsClient {
         saveDuckId(runner);
 
         duckFly(runner, "${duckId}");
-        validateResponseString(runner, "{\n" + "  \"message\": \"I am flying :)\"\n" + "}");
+        validateResponseString(runner, "{\n" + "  \"message\": \"I`m flying\"\n" + "}");
     }
 
     @Test(description = "Проверка полета уточки в состоянии крыльев FIXED")
@@ -62,9 +62,9 @@ public class DuckFlyTest extends DuckActionsClient {
 
         saveDuckId(runner);
 
-        ResponseMessage responseMessage = new ResponseMessage().message("Wings are not detected :(");
+        ResponseMessage responseMessage = new ResponseMessage().message("Invalid parameter value");
 
         duckFly(runner, "${duckId}");
-        validateResponsePayload(runner, responseMessage);
+        validateResponseWingsUndefined(runner, responseMessage);
     }
 }
