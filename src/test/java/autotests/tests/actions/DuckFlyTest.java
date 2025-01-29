@@ -17,7 +17,7 @@ public class DuckFlyTest extends DuckActionsClient {
         saveDuckId(runner);
 
         duckFly(runner, "${duckId}");
-        validateResponse(runner, "{\n" + "  \"message\": \"I am flying :)\"\n" + "}");
+        validateResponse(runner, "{\n" + "  \"message\": \"I’m flying\"\n" + "}");
     }
 
     @Test(description = "Проверка полета уточки в состоянии крыльев FIXED")
@@ -28,7 +28,7 @@ public class DuckFlyTest extends DuckActionsClient {
         saveDuckId(runner);
 
         duckFly(runner, "${duckId}");
-        validateResponse(runner, "{\n" + "  \"message\": \"I can not fly :C\"\n" + "}");
+        validateResponse(runner, "{\n" + "  \"message\": \"I can’t fly\"\n" + "}");
     }
 
     @Test(description = "Проверка полета уточки в состоянии крыльев UNDEFINED")
@@ -39,6 +39,6 @@ public class DuckFlyTest extends DuckActionsClient {
         saveDuckId(runner);
 
         duckFly(runner, "${duckId}");
-        validateResponse(runner, "{\n" + "  \"message\": \"Wings are not detected :(\"\n" + "}");
+        validateResponse(runner, "{\n" + "  \"message\": \"Wings are not detected\"\n" + "}");
     }
 }
