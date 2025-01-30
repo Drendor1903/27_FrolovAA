@@ -65,12 +65,15 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
-    public void validateResponseWithNotExistingId(TestCaseRunner runner) {
+    public void validateResponseWithNotExistingId(TestCaseRunner runner, String body) {
         runner.$(
                 http()
                         .client(duckService)
                         .receive()
-                        .response(HttpStatus.NOT_FOUND));
+                        .response(HttpStatus.NOT_FOUND)
+                        .message()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(body));
     }
 
     public void createDuck(TestCaseRunner runner, Object body) {

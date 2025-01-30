@@ -62,7 +62,7 @@ public class DuckFlyTest extends DuckActionsClient {
 
         saveDuckId(runner);
 
-        ResponseMessage responseMessage = new ResponseMessage().message("Invalid parameter value");
+        ResponseMessage responseMessage = new ResponseMessage().message("Wings are not detected");
 
         duckFly(runner, "${duckId}");
         validateResponseWingsUndefined(runner, responseMessage);
