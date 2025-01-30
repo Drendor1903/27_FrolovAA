@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="autotests.tests.objectManipulation.DuckCreateTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-01-30T04:47:17" hostname="DESKTOP-BNQECL0" time="1.311">
+  <properties/>
+  <testcase name="successfulCreateDuckWithMaterialRubber[0](null)" classname="autotests.tests.objectManipulation.DuckCreateTest" time="1.009"/>
+  <testcase name="successfulCreateDuckWithMaterialWood[0](null)" classname="autotests.tests.objectManipulation.DuckCreateTest" time="0.271"/>
+  <system-out><![CDATA[11:47:17,400 DEBUG ingClientInterceptor| Received Http response message
+11:47:17,400 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:17,404 INFO     client.HttpClient| HTTP message was sent to endpoint: 'http://localhost:2222/api/duck/action/quack?repetitionCount=3&soundCount=2&id=1234567'
+11:47:17,405 DEBUG ltCorrelationManager| Saving correlated object for 'citrus_message_id = '47942431-976c-4b51-b2f1-def9255338a8''
+11:47:17,406 INFO  port.LoggingReporter| 
+11:47:17,406 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,406 INFO  port.LoggingReporter| 
+11:47:17,406 DEBUG port.LoggingReporter| TEST STEP 0: receive
+11:47:17,407 DEBUG ngCorrelationManager| Get correlation key for 'citrus_message_correlator_duckService'
+11:47:17,407 DEBUG ltCorrelationManager| Finding correlated object for 'citrus_message_id = '47942431-976c-4b51-b2f1-def9255338a8''
+11:47:17,411 DEBUG ReceiveMessageAction| Received message:
+HTTPMESSAGE [id: 050ddcba-7953-4963-b82f-1de0b9c225c4, payload: {
+  "sound": "quack-quack-quack, quack-quack-quack"
+}][headers: {Transfer-Encoding=chunked, Connection=keep-alive, contentType=application/json, Date=1738212436000, citrus_message_id=050ddcba-7953-4963-b82f-1de0b9c225c4, citrus_message_timestamp=1738212437405, Keep-Alive=timeout=60, Content-Type=application/json, citrus_http_status_code=200, citrus_http_reason_phrase=OK, citrus_http_version=HTTP/1.1}]
+11:47:17,412 DEBUG ReceiveMessageAction| Control message:
+HTTPMESSAGE [id: 09a003e7-3733-4d3a-969a-aa622cfd3af7, payload: {
+
+  "sound": "quack-quack-quack, quack-quack-quack"
+}][headers: {citrus_message_id=09a003e7-3733-4d3a-969a-aa622cfd3af7, citrus_message_timestamp=1738212437406, citrus_http_reason_phrase=OK, citrus_http_status_code=200, Content-Type=application/json, citrus_message_type=XML}]
+11:47:17,416 DEBUG ageValidatorRegistry| Found 3 message validators for message
+11:47:17,416 DEBUG ssageHeaderValidator| Start message header validation ...
+11:47:17,420 DEBUG faultHeaderValidator| Validating header element: citrus_http_reason_phrase='OK': OK.
+11:47:17,422 DEBUG faultHeaderValidator| Validating header element: citrus_http_status_code='200': OK.
+11:47:17,422 DEBUG faultHeaderValidator| Validating header element: Content-Type='application/json': OK.
+11:47:17,422 INFO  ssageHeaderValidator| Message header validation successful: All values OK
+11:47:17,423 DEBUG TextMessageValidator| Start JSON message validation ...
+11:47:17,423 DEBUG JsonSchemaValidation| Starting Json schema validation ...
+11:47:17,423 INFO  JsonSchemaValidation| Json schema validation successful: All values OK
+11:47:17,423 DEBUG TextMessageValidator| Validation successful for JSON entry 'sound' (quack-quack-quack, quack-quack-quack)
+11:47:17,423 INFO  TextMessageValidator| JSON message validation successful: All values OK
+11:47:17,423 INFO  port.LoggingReporter| 
+11:47:17,423 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,480 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:17,483 INFO  port.LoggingReporter| 
+11:47:17,484 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:17,484 DEBUG port.LoggingReporter| STARTING TEST DuckCreateTest.successfulCreateDuckWithMaterialRubber <autotests.tests.objectManipulation>
+11:47:17,484 INFO  port.LoggingReporter| 
+11:47:17,484 DEBUG trus.DefaultTestCase| Initializing test case
+11:47:17,484 DEBUG  context.TestContext| Setting variable: citrus.test.name with value: 'DuckCreateTest.successfulCreateDuckWithMaterialRubber'
+11:47:17,484 DEBUG  context.TestContext| Setting variable: citrus.test.package with value: 'autotests.tests.objectManipulation'
+11:47:17,484 DEBUG trus.DefaultTestCase| Initializing test parameter 'arg0' as variable
+11:47:17,484 DEBUG  context.TestContext| Setting variable: arg0 with value: 'com.consol.citrus.DefaultTestCaseRunner@4085855b'
+11:47:17,485 DEBUG trus.DefaultTestCase| Test variables:
+11:47:17,485 DEBUG trus.DefaultTestCase| citrus.test.package = autotests.tests.objectManipulation
+11:47:17,485 DEBUG trus.DefaultTestCase| arg0 = com.consol.citrus.DefaultTestCaseRunner@4085855b
+11:47:17,485 DEBUG trus.DefaultTestCase| citrus.test.name = DuckCreateTest.successfulCreateDuckWithMaterialRubber
+11:47:18,503 DEBUG ingClientInterceptor| Received Http response message
+11:47:18,504 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:18,507 INFO     client.HttpClient| HTTP message was sent to endpoint: 'http://localhost:2222/api/duck/action/fly?id=427489'
+11:47:18,509 DEBUG ltCorrelationManager| Saving correlated object for 'citrus_message_id = '0cc303c4-efee-4228-92cf-41aa02a4fa61''
+11:47:18,509 INFO  port.LoggingReporter| 
+11:47:18,509 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:18,510 INFO  port.LoggingReporter| 
+11:47:18,510 DEBUG port.LoggingReporter| TEST STEP 0: receive
+11:47:18,510 DEBUG ngCorrelationManager| Get correlation key for 'citrus_message_correlator_duckService'
+11:47:18,510 DEBUG ltCorrelationManager| Finding correlated object for 'citrus_message_id = '0cc303c4-efee-4228-92cf-41aa02a4fa61''
+11:47:18,511 DEBUG ReceiveMessageAction| Received message:
+HTTPMESSAGE [id: a9439b74-86a9-4a56-9695-a19383c8d3aa, payload: {
+  "message": "Wings are not detected :("
+}][headers: {Transfer-Encoding=chunked, Connection=keep-alive, contentType=application/json, Date=1738212437000, citrus_message_id=a9439b74-86a9-4a56-9695-a19383c8d3aa, citrus_message_timestamp=1738212438509, Keep-Alive=timeout=60, Content-Type=application/json, citrus_http_status_code=200, citrus_http_reason_phrase=OK, citrus_http_version=HTTP/1.1}]
+11:47:18,515 DEBUG ReceiveMessageAction| Control message:
+HTTPMESSAGE [id: efb5a2d0-8f8f-4821-b3a6-80150ac91981, payload: {
+  "message": "Wings are not detected"
+}][headers: {citrus_message_id=efb5a2d0-8f8f-4821-b3a6-80150ac91981, citrus_message_timestamp=1738212438509, citrus_http_reason_phrase=BAD_REQUEST, citrus_http_status_code=400, Content-Type=application/json, citrus_message_type=XML}]
+11:47:18,516 DEBUG ageValidatorRegistry| Found 3 message validators for message
+11:47:18,517 DEBUG ssageHeaderValidator| Start message header validation ...
+11:47:18,517 DEBUG trus.DefaultTestCase| Entering finally block in test case
+11:47:18,518 INFO  port.LoggingReporter| 
+11:47:18,518 DEBUG port.LoggingReporter| TEST STEP 0: DuckFlyTest$$Lambda$1095/0x00000008405c4440
+11:47:18,518 INFO  port.LoggingReporter| 
+11:47:18,518 DEBUG port.LoggingReporter| TEST STEP 0: sql
+11:47:18,518 DEBUG ons.ExecuteSQLAction| Executing SQL statement: DELETE FROM DUCK WHERE ID=427489
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

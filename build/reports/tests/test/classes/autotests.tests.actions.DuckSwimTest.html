@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class autotests.tests.actions.DuckSwimTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class autotests.tests.actions.DuckSwimTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/autotests.tests.actions.html">autotests.tests.actions</a> &gt; DuckSwimTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">2</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.905s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Failed tests</a>
+</li>
+<li>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="successfulSwimWithExistingId[0](null)"></a>
+<h3 class="failures">successfulSwimWithExistingId[0](null)</h3>
+<span class="code">
+<pre>com.consol.citrus.exceptions.TestCaseFailedException: Validation failed: Values not equal for header element 'citrus_http_reason_phrase', expected 'OK' but was 'NOT_FOUND'
+	at app//com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:143)
+	at app//com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at app//com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at app//autotests.clients.DuckActionsClient.validateResponseString(DuckActionsClient.java:30)
+	at app//autotests.tests.actions.DuckSwimTest.successfulSwimWithExistingId(DuckSwimTest.java:32)
+	at java.base@11.0.25/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@11.0.25/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base@11.0.25/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@11.0.25/java.lang.reflect.Method.invoke(Method.java:566)
+	at app//org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at app//com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at app//com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base@11.0.25/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at app//com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at app//com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at app//com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at app//com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at app//com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at app//org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at app//org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at app//org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at app//org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at app//org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at app//org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base@11.0.25/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base@11.0.25/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base@11.0.25/java.lang.Thread.run(Thread.java:829)
+Caused by: com.consol.citrus.exceptions.ValidationException: Validation failed: Values not equal for header element 'citrus_http_reason_phrase', expected 'OK' but was 'NOT_FOUND'
+	at app//com.consol.citrus.validation.DefaultHeaderValidator.validateHeader(DefaultHeaderValidator.java:79)
+	at app//com.consol.citrus.validation.DefaultMessageHeaderValidator.validateMessage(DefaultMessageHeaderValidator.java:101)
+	at app//com.consol.citrus.validation.DefaultMessageHeaderValidator.validateMessage(DefaultMessageHeaderValidator.java:44)
+	at app//com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at app//com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at app//com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at app//com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at app//com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	... 28 more
+Caused by: java.lang.IllegalArgumentException: Values not equal for header element 'citrus_http_reason_phrase', expected 'OK' but was 'NOT_FOUND'
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.DefaultHeaderValidator.validateHeader(DefaultHeaderValidator.java:66)
+	... 35 more
+</pre>
+</span>
+</div>
+<div class="test">
+<a name="unsuccessfulSwimWithNotExistingId[0](null)"></a>
+<h3 class="failures">unsuccessfulSwimWithNotExistingId[0](null)</h3>
+<span class="code">
+<pre>com.consol.citrus.exceptions.TestCaseFailedException: Failed to validate JSON text:
+{&quot;message&quot;:&quot;Paws are not found ((((&quot;} Values not equal for entry: 'message', expected 'Duck with id = 0 is not found' but was 'Paws are not found (((('
+	at app//com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:143)
+	at app//com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at app//com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at app//autotests.clients.DuckActionsClient.validateResponseWithNotExistingId(DuckActionsClient.java:57)
+	at app//autotests.tests.actions.DuckSwimTest.unsuccessfulSwimWithNotExistingId(DuckSwimTest.java:42)
+	at java.base@11.0.25/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@11.0.25/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base@11.0.25/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@11.0.25/java.lang.reflect.Method.invoke(Method.java:566)
+	at app//org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at app//com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at app//com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base@11.0.25/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at app//com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at app//com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at app//com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at app//com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at app//com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at app//org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at app//org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at app//org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at app//org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at app//org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at app//org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at app//org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base@11.0.25/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base@11.0.25/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base@11.0.25/java.lang.Thread.run(Thread.java:829)
+Caused by: com.consol.citrus.exceptions.ValidationException: Failed to validate JSON text:
+{&quot;message&quot;:&quot;Paws are not found ((((&quot;} Values not equal for entry: 'message', expected 'Duck with id = 0 is not found' but was 'Paws are not found (((('
+	at app//com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:114)
+	at app//com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
+	at app//com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at app//com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at app//com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at app//com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at app//com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	... 28 more
+Caused by: java.lang.IllegalArgumentException: Values not equal for entry: 'message', expected 'Duck with id = 0 is not found' but was 'Paws are not found (((('
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateJson(JsonTextMessageValidator.java:211)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:102)
+	... 34 more
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="failures">successfulSwimWithExistingId[0](null)</td>
+<td class="failures">1.554s</td>
+<td class="failures">failed</td>
+</tr>
+<tr>
+<td class="failures">unsuccessfulSwimWithNotExistingId[0](null)</td>
+<td class="failures">0.351s</td>
+<td class="failures">failed</td>
+</tr>
+</table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>11:47:16,906 INFO  JsonSchemaValidation| Json schema validation successful: All values OK
+11:47:16,906 INFO  JsonSchemaValidation| Json schema validation successful: All values OK
+11:47:16,906 INFO  JsonSchemaValidation| Json schema validation successful: All values OK
+11:47:16,923 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:16,927 INFO  port.LoggingReporter| 
+11:47:16,927 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:16,927 DEBUG port.LoggingReporter| STARTING TEST DuckSwimTest.unsuccessfulSwimWithNotExistingId &lt;autotests.tests.actions&gt;
+11:47:16,927 INFO  port.LoggingReporter| 
+11:47:16,927 DEBUG trus.DefaultTestCase| Initializing test case
+11:47:16,928 DEBUG  context.TestContext| Setting variable: citrus.test.name with value: 'DuckSwimTest.unsuccessfulSwimWithNotExistingId'
+11:47:16,928 DEBUG  context.TestContext| Setting variable: citrus.test.package with value: 'autotests.tests.actions'
+11:47:16,928 DEBUG trus.DefaultTestCase| Initializing test parameter 'arg0' as variable
+11:47:16,928 DEBUG  context.TestContext| Setting variable: arg0 with value: 'com.consol.citrus.DefaultTestCaseRunner@46ef7007'
+11:47:16,928 DEBUG trus.DefaultTestCase| Test variables:
+11:47:16,929 DEBUG trus.DefaultTestCase| citrus.test.package = autotests.tests.actions
+11:47:16,929 DEBUG trus.DefaultTestCase| arg0 = com.consol.citrus.DefaultTestCaseRunner@46ef7007
+11:47:16,929 DEBUG trus.DefaultTestCase| citrus.test.name = DuckSwimTest.unsuccessfulSwimWithNotExistingId
+11:47:16,929 DEBUG  context.TestContext| Setting variable: duckId with value: '0'
+11:47:16,930 INFO  port.LoggingReporter| 
+11:47:16,931 DEBUG port.LoggingReporter| TEST STEP 0: send
+11:47:16,932 DEBUG ltCorrelationManager| Saving correlation key for 'citrus_message_correlator_duckService'
+11:47:16,932 DEBUG  context.TestContext| Setting variable: citrus_message_correlator_duckService with value: 'citrus_message_id = '3183c823-fdb6-4d4f-8f70-52a48c79f968''
+11:47:16,932 DEBUG  context.TestContext| Setting variable: citrus_message_replyTo_citrus_message_correlator_duckService with value: 'http://localhost:2222/api/duck/action/swim?id=0'
+11:47:16,932 INFO     client.HttpClient| Sending HTTP message to: 'http://localhost:2222/api/duck/action/swim?id=0'
+11:47:16,933 DEBUG    client.HttpClient| Message to send:
+
+11:47:16,934 DEBUG ingClientInterceptor| Sending Http request message
+11:47:16,934 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:16,950 DEBUG ingClientInterceptor| Received Http response message
+11:47:16,950 DEBUG   util.TypeConverter| Using type converter 'spring'
+11:47:16,954 INFO     client.HttpClient| Caught HTTP rest client exception: 404 Not Found
+11:47:16,954 INFO     client.HttpClient| Propagating HTTP rest client exception according to error handling strategy
+11:47:16,956 DEBUG ltCorrelationManager| Saving correlated object for 'citrus_message_id = '3183c823-fdb6-4d4f-8f70-52a48c79f968''
+11:47:16,956 INFO  port.LoggingReporter| 
+11:47:16,956 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:16,956 INFO  port.LoggingReporter| 
+11:47:16,957 DEBUG port.LoggingReporter| TEST STEP 0: receive
+11:47:16,957 DEBUG ngCorrelationManager| Get correlation key for 'citrus_message_correlator_duckService'
+11:47:16,957 DEBUG ltCorrelationManager| Finding correlated object for 'citrus_message_id = '3183c823-fdb6-4d4f-8f70-52a48c79f968''
+11:47:16,959 DEBUG ReceiveMessageAction| Received message:
+HTTPMESSAGE [id: c7ccdfe1-06fe-4cf2-b9fa-e589367d425c, payload: {
+  &quot;message&quot;: &quot;Paws are not found ((((&quot;
+}][headers: {Transfer-Encoding=chunked, Connection=keep-alive, contentType=application/json, Date=1738212436000, citrus_message_id=c7ccdfe1-06fe-4cf2-b9fa-e589367d425c, citrus_message_timestamp=1738212436955, Keep-Alive=timeout=60, Content-Type=application/json, citrus_http_status_code=404, citrus_http_reason_phrase=NOT_FOUND, citrus_http_version=HTTP/1.1}]
+11:47:16,961 DEBUG ReceiveMessageAction| Control message:
+HTTPMESSAGE [id: d3bcbde1-39f5-4c5f-a164-3e48bee3f497, payload: {
+
+  &quot;message&quot;: &quot;Duck with id = 0 is not found&quot;
+}][headers: {citrus_message_id=d3bcbde1-39f5-4c5f-a164-3e48bee3f497, citrus_message_timestamp=1738212436956, citrus_http_reason_phrase=NOT_FOUND, citrus_http_status_code=404, Content-Type=application/json, citrus_message_type=XML}]
+11:47:16,962 DEBUG ageValidatorRegistry| Found 3 message validators for message
+11:47:16,962 DEBUG ssageHeaderValidator| Start message header validation ...
+11:47:16,963 DEBUG faultHeaderValidator| Validating header element: citrus_http_reason_phrase='NOT_FOUND': OK.
+11:47:16,963 DEBUG faultHeaderValidator| Validating header element: citrus_http_status_code='404': OK.
+11:47:16,964 DEBUG faultHeaderValidator| Validating header element: Content-Type='application/json': OK.
+11:47:16,964 INFO  ssageHeaderValidator| Message header validation successful: All values OK
+11:47:16,964 DEBUG TextMessageValidator| Start JSON message validation ...
+11:47:16,964 DEBUG JsonSchemaValidation| Starting Json schema validation ...
+11:47:16,965 INFO  JsonSchemaValidation| Json schema validation successful: All values OK
+11:47:17,244 DEBUG trus.DefaultTestCase| Entering finally block in test case
+11:47:17,246 INFO  port.LoggingReporter| 
+11:47:17,246 DEBUG TextMessageValidator| Validation successful for JSON entry 'color' (yellow)
+11:47:17,247 DEBUG TextMessageValidator| Validation successful for JSON entry 'material' (rubber)
+11:47:17,247 DEBUG TextMessageValidator| Validation successful for JSON entry 'wingsState' (ACTIVE)
+11:47:17,247 DEBUG TextMessageValidator| Validation successful for JSON entry 'sound' (quack)
+11:47:17,246 DEBUG trus.DefaultTestCase| Entering finally block in test case
+11:47:17,249 INFO  port.LoggingReporter| 
+11:47:17,249 DEBUG port.LoggingReporter| TEST STEP 0: DuckFlyTest$$Lambda$779/0x00000008404b9440
+11:47:17,249 INFO  port.LoggingReporter| 
+11:47:17,250 DEBUG port.LoggingReporter| TEST STEP 0: sql
+11:47:17,250 DEBUG ons.ExecuteSQLAction| Executing SQL statement: DELETE FROM DUCK WHERE ID=925560
+11:47:17,252 INFO  ons.ExecuteSQLAction| SQL statement execution successful
+11:47:17,252 INFO  port.LoggingReporter| 
+11:47:17,252 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,252 INFO  port.LoggingReporter| 
+11:47:17,252 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,252 INFO  port.LoggingReporter| 
+11:47:17,252 ERROR port.LoggingReporter| TEST FAILED DuckFlyTest.successfulFlyWithActiveWings &lt;autotests.tests.actions&gt; Nested exception is: 
+com.consol.citrus.exceptions.ValidationException: Failed to validate JSON text:
+{&quot;message&quot;:&quot;I am flying :)&quot;} Values not equal for entry: 'message', expected 'I`m flying' but was 'I am flying :)'
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:114)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
+	at com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	at com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at autotests.clients.DuckActionsClient.validateResponseString(DuckActionsClient.java:30)
+	at autotests.tests.actions.DuckFlyTest.successfulFlyWithActiveWings(DuckFlyTest.java:33)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.IllegalArgumentException: Values not equal for entry: 'message', expected 'I`m flying' but was 'I am flying :)'
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateJson(JsonTextMessageValidator.java:211)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:102)
+	... 34 more
+11:47:17,256 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:17,256 INFO  port.LoggingReporter| 
+11:47:17,257 DEBUG trus.DefaultTestCase| Entering finally block in test case
+11:47:17,257 INFO  port.LoggingReporter| 
+11:47:17,257 DEBUG port.LoggingReporter| TEST STEP 0: DuckPropertiesTest$$Lambda$783/0x00000008404ba440
+11:47:17,258 INFO  port.LoggingReporter| 
+11:47:17,258 DEBUG port.LoggingReporter| TEST STEP 0: sql
+11:47:17,258 DEBUG ons.ExecuteSQLAction| Executing SQL statement: DELETE FROM DUCK WHERE ID=1234567
+11:47:17,244 INFO  port.LoggingReporter| 
+11:47:17,261 ERROR port.LoggingReporter| TEST FAILED DuckSwimTest.unsuccessfulSwimWithNotExistingId &lt;autotests.tests.actions&gt; Nested exception is: 
+com.consol.citrus.exceptions.ValidationException: Failed to validate JSON text:
+{&quot;message&quot;:&quot;Paws are not found ((((&quot;} Values not equal for entry: 'message', expected 'Duck with id = 0 is not found' but was 'Paws are not found (((('
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:114)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
+	at com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	at com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at autotests.clients.DuckActionsClient.validateResponseWithNotExistingId(DuckActionsClient.java:57)
+	at autotests.tests.actions.DuckSwimTest.unsuccessfulSwimWithNotExistingId(DuckSwimTest.java:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.IllegalArgumentException: Values not equal for entry: 'message', expected 'Duck with id = 0 is not found' but was 'Paws are not found (((('
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateJson(JsonTextMessageValidator.java:211)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:102)
+	... 34 more
+11:47:17,246 DEBUG port.LoggingReporter| TEST STEP 0: DuckQuackTest$$Lambda$778/0x00000008404b9040
+11:47:17,267 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:17,268 INFO  port.LoggingReporter| 
+11:47:17,261 INFO  ons.ExecuteSQLAction| SQL statement execution successful
+11:47:17,268 INFO  port.LoggingReporter| 
+11:47:17,268 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,268 INFO  port.LoggingReporter| 
+11:47:17,268 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,269 INFO  port.LoggingReporter| 
+11:47:17,269 ERROR port.LoggingReporter| TEST FAILED DuckPropertiesTest.successfulGetPropertiesWithMaterialRubber &lt;autotests.tests.actions&gt; Nested exception is: 
+com.consol.citrus.exceptions.ValidationException: Failed to validate JSON text:
+{&quot;color&quot;:&quot;yellow&quot;,&quot;height&quot;:15.0,&quot;material&quot;:&quot;rubber&quot;,&quot;sound&quot;:&quot;quack&quot;,&quot;wingsState&quot;:&quot;ACTIVE&quot;} Values not equal for entry: 'height', expected '0.15' but was '15.0'
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:114)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
+	at com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	at com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at autotests.clients.DuckActionsClient.validateResponseString(DuckActionsClient.java:30)
+	at autotests.tests.actions.DuckPropertiesTest.successfulGetPropertiesWithMaterialRubber(DuckPropertiesTest.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.IllegalArgumentException: Values not equal for entry: 'height', expected '0.15' but was '15.0'
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateJson(JsonTextMessageValidator.java:211)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:102)
+	... 34 more
+11:47:17,275 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:17,275 INFO  port.LoggingReporter| 
+11:47:17,268 INFO  port.LoggingReporter| 
+11:47:17,277 DEBUG port.LoggingReporter| TEST STEP 0: sql
+11:47:17,277 DEBUG ons.ExecuteSQLAction| Executing SQL statement: DELETE FROM DUCK WHERE ID=1234568
+11:47:17,279 INFO  ons.ExecuteSQLAction| SQL statement execution successful
+11:47:17,279 INFO  port.LoggingReporter| 
+11:47:17,279 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,279 INFO  port.LoggingReporter| 
+11:47:17,279 DEBUG port.LoggingReporter| TEST STEP 0 SUCCESS
+11:47:17,280 INFO  port.LoggingReporter| 
+11:47:17,280 ERROR port.LoggingReporter| TEST FAILED DuckQuackTest.successfulQuackWithEvenId &lt;autotests.tests.actions&gt; Nested exception is: 
+com.consol.citrus.exceptions.ValidationException: Failed to validate JSON text:
+{&quot;sound&quot;:&quot;moo-moo-moo, moo-moo-moo&quot;} Values not equal for entry: 'sound', expected 'quack-quack-quack, quack-quack-quack' but was 'moo-moo-moo, moo-moo-moo'
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:114)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:58)
+	at com.consol.citrus.validation.AbstractMessageValidator.validateMessage(AbstractMessageValidator.java:46)
+	at com.consol.citrus.actions.ReceiveMessageAction.validateMessage(ReceiveMessageAction.java:279)
+	at com.consol.citrus.actions.ReceiveMessageAction.doExecute(ReceiveMessageAction.java:168)
+	at com.consol.citrus.actions.AbstractTestAction.execute(AbstractTestAction.java:59)
+	at com.consol.citrus.DefaultTestCase.executeAction(DefaultTestCase.java:136)
+	at com.consol.citrus.DefaultTestCaseRunner.run(DefaultTestCaseRunner.java:125)
+	at com.consol.citrus.TestActionRunner.$(TestActionRunner.java:35)
+	at autotests.clients.DuckActionsClient.validateResponseResource(DuckActionsClient.java:39)
+	at autotests.tests.actions.DuckQuackTest.successfulQuackWithEvenId(DuckQuackTest.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at com.consol.citrus.testng.TestNGHelper.lambda$invokeTestMethod$1(TestNGHelper.java:82)
+	at com.consol.citrus.common.DefaultTestLoader.lambda$doLoad$1(DefaultTestLoader.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at com.consol.citrus.common.DefaultTestLoader.doLoad(DefaultTestLoader.java:116)
+	at com.consol.citrus.common.DefaultTestLoader.load(DefaultTestLoader.java:94)
+	at com.consol.citrus.testng.TestNGHelper.invokeTestMethod(TestNGHelper.java:83)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:185)
+	at com.consol.citrus.testng.spring.TestNGCitrusSpringSupport.run(TestNGCitrusSpringSupport.java:101)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeHookable(MethodInvocationHelper.java:272)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:669)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.IllegalArgumentException: Values not equal for entry: 'sound', expected 'quack-quack-quack, quack-quack-quack' but was 'moo-moo-moo, moo-moo-moo'
+	at org.springframework.util.Assert.isTrue(Assert.java:121)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateJson(JsonTextMessageValidator.java:211)
+	at com.consol.citrus.validation.json.JsonTextMessageValidator.validateMessage(JsonTextMessageValidator.java:102)
+	... 34 more
+11:47:17,282 INFO  port.LoggingReporter| ------------------------------------------------------------------------
+11:47:17,282 INFO  port.LoggingReporter| 
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.8</a> at 30 янв. 2025 г., 11:47:20</p>
+</div>
+</div>
+</body>
+</html>
