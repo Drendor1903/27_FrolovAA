@@ -64,6 +64,6 @@ public class DuckFlyTest extends DuckActionsClient {
         ResponseMessage responseMessage = new ResponseMessage().message("Wings are not detected");
 
         duckFly(runner, "${duckId}");
-        validateResponseWingsUndefined(runner, responseMessage);
+        validateResponseBadRequest(runner, responseMessage);
     }
 }
