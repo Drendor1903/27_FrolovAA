@@ -61,7 +61,7 @@ public class DuckFlyTest extends DuckActionsClient {
         databaseUpdate(runner, "INSERT INTO DUCK (id, color, height, material, sound, wings_state)\n" +
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'UNDEFINED');");
 
-        ResponseMessage responseMessage = new ResponseMessage().message("Invalid parameter value");
+        ResponseMessage responseMessage = new ResponseMessage().message("Wings are not detected");
 
         duckFly(runner, "${duckId}");
         validateResponseWingsUndefined(runner, responseMessage);

@@ -35,8 +35,10 @@ public class DuckSwimTest extends DuckActionsClient {
     @Test(description = "Проверка может ли уточка с не существующим Id плавать")
     @CitrusTest
     public void unsuccessfulSwimWithNotExistingId(@Optional @CitrusResource TestCaseRunner runner) {
-        duckSwim(runner, "0");
+        runner.variable("duckId", "0");
 
-        validateResponseWithNotExistingId(runner);
+        duckSwim(runner, "${duckId}");
+
+        validateResponseWithNotExistingId(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is not found\"\n" + "}");
     }
 }
