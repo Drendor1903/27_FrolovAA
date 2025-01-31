@@ -1,20 +1,13 @@
 package autotests.clients;
 
 import autotests.BaseTest;
-import autotests.EndpointConfig;
 import com.consol.citrus.TestCaseRunner;
-import com.consol.citrus.http.client.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-import org.springframework.test.context.ContextConfiguration;
 
 import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
 
-@ContextConfiguration(classes = {EndpointConfig.class})
 public class DuckActionsClient extends BaseTest {
-
-    @Autowired
-    protected HttpClient duckService;
 
     @Autowired
     protected SingleConnectionDataSource testDb;
@@ -24,9 +17,27 @@ public class DuckActionsClient extends BaseTest {
                 .statement(sql));
     }
 
-    public void duckFly(TestCaseRunner runner, String id){
-        sendGetRequest(runner, duckService,
+    public void duckFly(TestCaseRunner runner, String id) {
+        sendGetRequestWithQueryParam(runner, duckService,
                 "/api/duck/action/fly", "id", id);
+    }
+
+    public void duckSwim(TestCaseRunner runner, String id) {
+        sendGetRequestWithQueryParam(runner, duckService,
+                "/api/duck/action/swim", "id", id);
+    }
+
+    public void duckProperties(TestCaseRunner runner, String id) {
+        sendGetRequestWithQueryParam(runner, duckService,
+                "/api/duck/action/properties", "id", id);
+    }
+
+    public void duckQuack(TestCaseRunner runner, String id, int repetitionCount, int soundCount) {
+        sendGetRequest(runner, duckService,
+                "/api/duck/action/quack?"
+                        + "id=" + id
+                        + "&repetitionCount=" + repetitionCount
+                        + "&soundCount=" + soundCount);
     }
 
 }

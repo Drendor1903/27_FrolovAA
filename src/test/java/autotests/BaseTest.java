@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 
+import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
 @ContextConfiguration(classes = {EndpointConfig.class})
@@ -37,6 +38,16 @@ public class BaseTest extends TestNGCitrusSpringSupport {
                 .body(new ClassPathResource(responseMessage)));
     }
 
+    public void validateResponseCreate(TestCaseRunner runner, String messageBody) {
+        runner.$(http().client(duckService)
+                .receive()
+                .response(HttpStatus.OK)
+                .message()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .extract(fromBody().expression("$.id", "duckId"))
+                .body(new ClassPathResource(messageBody)));
+    }
+
     protected void validateResponseBadRequest(TestCaseRunner runner, Object body) {
         runner.$(http().client(duckService)
                 .receive()
@@ -57,7 +68,7 @@ public class BaseTest extends TestNGCitrusSpringSupport {
                         .body(body));
     }
 
-    protected void sendGetRequest(TestCaseRunner runner, HttpClient URL, String path, String queName, String queValue){
+    protected void sendGetRequestWithQueryParam(TestCaseRunner runner, HttpClient URL, String path, String queName, String queValue) {
         runner.$(http()
                 .client(URL)
                 .send()
@@ -65,26 +76,35 @@ public class BaseTest extends TestNGCitrusSpringSupport {
                 .queryParam(queName, queValue));
     }
 
-    protected void duckQuack(TestCaseRunner runner, String id, int repetitionCount, int soundCount) {
-        runner.$(http().client(duckService)
+    protected void sendGetRequest(TestCaseRunner runner, HttpClient URL, String path) {
+        runner.$(http()
+                .client(URL)
                 .send()
-                .get("/api/duck/action/quack")
-                .queryParam("id", id)
-                .queryParam("repetitionCount", Integer.toString(repetitionCount))
-                .queryParam("soundCount", Integer.toString(soundCount)));
+                .get(path));
     }
 
-    protected void duckProperties(TestCaseRunner runner, String id) {
-        runner.$(http().client(duckService)
-                .send()
-                .get("/api/duck/action/properties")
-                .queryParam("id", id));
+    protected void sendPostRequest(TestCaseRunner runner, HttpClient URL, String path, Object body) {
+        runner.$(
+                http().client(URL)
+                        .send()
+                        .post(path)
+                        .message()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
     }
 
-    protected void duckSwim(TestCaseRunner runner, String id) {
-        runner.$(http().client(duckService)
-                .send()
-                .get("/api/duck/action/swim")
-                .queryParam("id", id));
+    protected void sendDeleteRequest(TestCaseRunner runner, HttpClient URL, String path){
+        runner.$(
+                http().client(URL)
+                        .send()
+                        .delete(path));
     }
+
+    protected void sendPutRequest(TestCaseRunner runner, HttpClient URL, String path){
+        runner.$(
+                http().client(URL)
+                        .send()
+                        .put(path));
+    }
+
 }

@@ -1,4 +1,5 @@
 {
+  "id": ${duckId},
   "color": "yellow",
   "height": 0.15,
   "material": "wood",
