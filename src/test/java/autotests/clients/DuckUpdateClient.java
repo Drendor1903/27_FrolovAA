@@ -52,6 +52,16 @@ public class DuckUpdateClient extends TestNGCitrusSpringSupport {
                         .body(responseMessage));
     }
 
+    public void validateResponseStringWithUpdateSound(TestCaseRunner runner, String responseMessage) {
+        runner.$(
+                http().client(duckService)
+                        .receive()
+                        .response(HttpStatus.BAD_REQUEST)
+                        .message()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(responseMessage));
+    }
+
     public void validateResponseResources(TestCaseRunner runner, String responseMessage) {
         runner.$(
                 http().client(duckService)

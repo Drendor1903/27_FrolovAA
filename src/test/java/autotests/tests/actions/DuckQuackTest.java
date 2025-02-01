@@ -28,7 +28,7 @@ public class DuckQuackTest extends DuckActionsClient {
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         duckQuack(runner, "${duckId}", 3, 2);
-        validateResponseString(runner, "{\n" + "  \"sound\": \"quack-quack-quack, quack-quack-quack\"\n" + "}");
+        validateResponseString(runner, "{\n" + "  \"sound\": \"quack-quack, quack-quack, quack-quack\"\n" + "}");
     }
 
     @Test(description = "Проверка кряканья уточки с корректным четным Id")
