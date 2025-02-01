@@ -30,7 +30,7 @@ public class DuckFlyTest extends DuckActionsClient {
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         duckFly(runner, "${duckId}");
-        validateResponseString(runner, "{\n" + "  \"message\": \"I`m flying\"\n" + "}");
+        validateResponseString(runner, "{\n" + "  \"message\": \"I'm flying\"\n" + "}");
     }
 
     @Test(description = "Проверка полета уточки в состоянии крыльев FIXED")

@@ -44,7 +44,7 @@ public class DuckUpdateTest extends DuckUpdateClient {
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         updateDuck(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
-        validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
+        validateResponseStringWithUpdateSound(runner, "{\n" + "  \"message\": \"Invalid parameter value\"\n" + "}");
 
         validateDuckInDatabase(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
     }
