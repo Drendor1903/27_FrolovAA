@@ -22,6 +22,7 @@ public class DuckDeleteTest extends DuckDeleteClient {
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         deleteDuck(runner, "${duckId}");
+        validateResponseString(runner, "{\n" + " \"message\": \"Duck is deleted\"\n" + "}");
 
         validateDuckInDatabase(runner, "${duckId}");
     }

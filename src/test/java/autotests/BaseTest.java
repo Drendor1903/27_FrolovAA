@@ -68,6 +68,16 @@ public class BaseTest extends TestNGCitrusSpringSupport {
                         .body(body));
     }
 
+    public void validateResponseStringWithUpdateSound(TestCaseRunner runner, String responseMessage) {
+        runner.$(
+                http().client(duckService)
+                        .receive()
+                        .response(HttpStatus.BAD_REQUEST)
+                        .message()
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .body(responseMessage));
+    }
+
     protected void sendGetRequestWithQueryParam(TestCaseRunner runner, HttpClient URL, String path, String queName, String queValue) {
         runner.$(http()
                 .client(URL)

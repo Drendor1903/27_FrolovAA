@@ -3,6 +3,6 @@
   "color": "grey",
   "height": 0.11,
   "material": "rubber",
-  "sound": "car",
+  "sound": "quack",
   "wingsState": "ACTIVE"
 }

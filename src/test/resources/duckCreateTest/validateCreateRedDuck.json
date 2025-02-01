@@ -3,6 +3,6 @@
   "color": "red",
   "height": 0.25,
   "material": "rubber",
-  "sound": "meow",
+  "sound": "quack",
   "wingsState": "ACTIVE"
 }

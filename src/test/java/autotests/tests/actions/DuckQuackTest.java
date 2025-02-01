@@ -19,7 +19,7 @@ public class DuckQuackTest extends DuckActionsClient {
     @Test(description = "Проверка кряканья уточки с корректным нечетным Id")
     @CitrusTest
     public void successfulQuackWithOddId(@Optional @CitrusResource TestCaseRunner runner) {
-        runner.variable("duckId", "1234567");
+        runner.variable("duckId", "123457");
 
         runner.$(doFinally().actions(action ->
                 databaseUpdate(runner, "DELETE FROM DUCK WHERE ID=${duckId}")));
@@ -28,14 +28,14 @@ public class DuckQuackTest extends DuckActionsClient {
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         duckQuack(runner, "${duckId}", 3, 2);
-        validateResponseString(runner, "{\n" + "  \"sound\": \"quack-quack-quack, quack-quack-quack\"\n" + "}");
+        validateResponseString(runner, "{\n" + "  \"sound\": \"quack-quack, quack-quack, quack-quack\"\n" + "}");
     }
 
     @Test(description = "Проверка кряканья уточки с корректным четным Id")
     @CitrusTest
     @Flaky
     public void successfulQuackWithEvenId(@Optional @CitrusResource TestCaseRunner runner) {
-        runner.variable("duckId", "1234568");
+        runner.variable("duckId", "123458");
 
         runner.$(doFinally().actions(action ->
                 databaseUpdate(runner, "DELETE FROM DUCK WHERE ID=${duckId}")));

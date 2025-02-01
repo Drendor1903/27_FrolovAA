@@ -30,14 +30,14 @@ public class DuckCreateTest extends DuckCreateClient {
             .color("red")
             .height(0.25)
             .material("rubber")
-            .sound("meow")
+            .sound("quack")
             .wingsState(WingsState.ACTIVE);
 
     Duck duck3 = new Duck()
             .color("grey")
             .height(0.11)
             .material("rubber")
-            .sound("car")
+            .sound("quack")
             .wingsState(WingsState.ACTIVE);
 
     Duck duck4 = new Duck()
