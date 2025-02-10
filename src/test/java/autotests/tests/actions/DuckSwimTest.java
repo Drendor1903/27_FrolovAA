@@ -39,6 +39,6 @@ public class DuckSwimTest extends DuckActionsClient {
 
         duckSwim(runner, "${duckId}");
 
-        validateResponseWithNotExistingId(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is not found\"\n" + "}");
+        validateResponseNotFound(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is not found\"\n" + "}");
     }
 }

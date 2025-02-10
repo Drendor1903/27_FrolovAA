@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 @Feature("Эндпоинт /api/duck/delete")
 public class DuckDeleteTest extends DuckDeleteClient {
 
-    @Test(description = "Удаление уточки")
+@Test(description = "Удаление уточки")
     @CitrusTest
     public void successfulDeleteDuck(@Optional @CitrusResource TestCaseRunner runner) {
         runner.variable("duckId", "citrus:randomNumber(6, true)");
@@ -21,9 +21,8 @@ public class DuckDeleteTest extends DuckDeleteClient {
         databaseUpdate(runner, "INSERT INTO DUCK (id, color, height, material, sound, wings_state)\n" +
                 "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
-
         deleteDuck(runner, "${duckId}");
-        validateResponseString(runner, "{\n" + "  \"message\": \"Duck is deleted\"\n" + "}");
+        validateResponseString(runner, "{\n" + " \"message\": \"Duck is deleted\"\n" + "}");
 
         validateDuckInDatabase(runner, "${duckId}");
     }

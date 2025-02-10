@@ -29,7 +29,7 @@ public class DuckUpdateTest extends DuckUpdateClient {
         updateDuck(runner, "${duckId}", "gray", 0.11, "rubber", "quack", "ACTIVE");
         validateResponseString(runner, "{\n" + "  \"message\": \"Duck with id = ${duckId} is updated\"\n" + "}");
 
-        validateDuckInDatabase(runner, "${duckId}", "gray", 0.11, "rubber", "quack", "ACTIVE");
+        validateDuckInDatabase(runner, "${duckId}", "gray", "0.11", "rubber", "quack", "ACTIVE");
     }
 
     @Test(description = "Обновление данных цвета и звука уточки")
@@ -46,6 +46,6 @@ public class DuckUpdateTest extends DuckUpdateClient {
         updateDuck(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
         validateResponseStringWithUpdateSound(runner, "{\n" + "  \"message\": \"Invalid parameter value\"\n" + "}");
 
-        validateDuckInDatabase(runner, "${duckId}", "gray", 0.15, "rubber", "meow", "ACTIVE");
+        validateDuckInDatabase(runner, "${duckId}", "gray", "0.15", "rubber", "meow", "ACTIVE");
     }
 }
