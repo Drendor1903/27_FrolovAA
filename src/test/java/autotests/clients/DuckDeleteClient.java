@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
-import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
 import static com.consol.citrus.actions.ExecuteSQLQueryAction.Builder.query;
 
 public class DuckDeleteClient extends BaseTest {
@@ -25,10 +24,5 @@ public class DuckDeleteClient extends BaseTest {
         runner.$(query(testDb)
                 .statement("SELECT COUNT(*) AS count FROM DUCK WHERE ID=" + id)
                 .validate("count", "0"));
-    }
-
-    public void databaseUpdate(TestCaseRunner runner, String sql) {
-        runner.$(sql(testDb)
-                .statement(sql));
     }
 }

@@ -2,20 +2,8 @@ package autotests.clients;
 
 import autotests.BaseTest;
 import com.consol.citrus.TestCaseRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-
-import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
 
 public class DuckActionsClient extends BaseTest {
-
-    @Autowired
-    protected SingleConnectionDataSource testDb;
-
-    public void databaseUpdate(TestCaseRunner runner, String sql) {
-        runner.$(sql(testDb)
-                .statement(sql));
-    }
 
     public void duckFly(TestCaseRunner runner, String id) {
         sendGetRequestWithQueryParam(runner, duckService,
