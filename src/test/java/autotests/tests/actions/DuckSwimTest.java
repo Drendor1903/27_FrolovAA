@@ -1,32 +1,35 @@
 package autotests.tests.actions;
 
 import autotests.clients.DuckActionsClient;
-import autotests.payloads.Duck;
-import autotests.payloads.WingsState;
 import com.consol.citrus.TestCaseRunner;
 import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.annotations.CitrusTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 
+import static com.consol.citrus.container.FinallySequence.Builder.doFinally;
+
+@Epic("Тесты на duck-action-controller")
+@Feature("Эндпоинт /api/duck/action/swim")
 public class DuckSwimTest extends DuckActionsClient {
 
     @Test(description = "Проверка может ли уточка с существующим Id плавать")
     @CitrusTest
+    @Flaky
     public void successfulSwimWithExistingId(@Optional @CitrusResource TestCaseRunner runner) {
-        Duck duck = new Duck()
-                .color("yellow")
-                .height(0.15)
-                .material("rubber")
-                .sound("quack")
-                .wingsState(WingsState.FIXED);
+        runner.variable("duckId", "citrus:randomNumber(6, true)");
 
-        createDuck(runner, duck);
+        runner.$(doFinally().actions(action ->
+                databaseUpdate(runner, "DELETE FROM DUCK WHERE ID=${duckId}")));
 
-        saveDuckId(runner);
+        databaseUpdate(runner, "INSERT INTO DUCK (id, color, height, material, sound, wings_state)\n" +
+                "VALUES (${duckId}, 'yellow', 0.15, 'rubber', 'quack', 'ACTIVE');");
 
         duckSwim(runner, "${duckId}");
-        validateResponseString(runner, "{\n" + "  \"message\": \"I'm swimming \"\n" + "}");
+        validateResponseString(runner, "{\n" + "  \"message\": \"I'm swimming\"\n" + "}");
     }
 
     @Test(description = "Проверка может ли уточка с не существующим Id плавать")

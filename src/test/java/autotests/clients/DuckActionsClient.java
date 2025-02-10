@@ -6,13 +6,15 @@ import com.consol.citrus.http.client.HttpClient;
 import com.consol.citrus.message.builder.ObjectMappingPayloadBuilder;
 import com.consol.citrus.testng.spring.TestNGCitrusSpringSupport;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.test.context.ContextConfiguration;
 
-import static com.consol.citrus.dsl.MessageSupport.MessageBodySupport.fromBody;
+import static com.consol.citrus.actions.ExecuteSQLAction.Builder.sql;
 import static com.consol.citrus.http.actions.HttpActionBuilder.http;
 
 @ContextConfiguration(classes = {EndpointConfig.class})
@@ -21,13 +23,8 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
     @Autowired
     protected HttpClient duckService;
 
-    public void saveDuckId(TestCaseRunner runner) {
-        runner.$(http().client(duckService)
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .extract(fromBody().expression("$.id", "duckId")));
-    }
+    @Autowired
+    protected SingleConnectionDataSource testDb;
 
     public void validateResponseString(TestCaseRunner runner, String responseMessage) {
         runner.$(http().client(duckService)
@@ -47,19 +44,10 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .body(new ClassPathResource(responseMessage)));
     }
 
-    public void validateResponsePayload(TestCaseRunner runner, Object body) {
-        runner.$(http().client(duckService)
-                .receive()
-                .response(HttpStatus.OK)
-                .message()
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
-    }
-
     public void validateResponseWingsUndefined(TestCaseRunner runner, Object body) {
         runner.$(http().client(duckService)
                 .receive()
-                .response(HttpStatus.OK)
+                .response(HttpStatus.BAD_REQUEST)
                 .message()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
@@ -76,16 +64,12 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                         .body(body));
     }
 
-    public void createDuck(TestCaseRunner runner, Object body) {
-        runner.$(
-                http().client(duckService)
-                        .send()
-                        .post("/api/duck/create")
-                        .message()
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .body(new ObjectMappingPayloadBuilder(body, new ObjectMapper())));
+    public void databaseUpdate(TestCaseRunner runner, String sql) {
+        runner.$(sql(testDb)
+                .statement(sql));
     }
 
+    @Step("Эндпоинт для проверки кряканья уточки")
     public void duckQuack(TestCaseRunner runner, String id, int repetitionCount, int soundCount) {
         runner.$(http().client(duckService)
                 .send()
@@ -95,6 +79,7 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .queryParam("soundCount", Integer.toString(soundCount)));
     }
 
+    @Step("Эндпоинт для проверки получения характеристик уточки")
     public void duckProperties(TestCaseRunner runner, String id) {
         runner.$(http().client(duckService)
                 .send()
@@ -102,6 +87,7 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .queryParam("id", id));
     }
 
+    @Step("Эндпоинт для проверки полета уточки")
     public void duckFly(TestCaseRunner runner, String id) {
         runner.$(http().client(duckService)
                 .send()
@@ -109,6 +95,7 @@ public class DuckActionsClient extends TestNGCitrusSpringSupport {
                 .queryParam("id", id));
     }
 
+    @Step("Эндпоинт для проверки плавания уточки")
     public void duckSwim(TestCaseRunner runner, String id) {
         runner.$(http().client(duckService)
                 .send()
