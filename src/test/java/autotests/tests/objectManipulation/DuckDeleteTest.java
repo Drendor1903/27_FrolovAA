@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 @Feature("Эндпоинт /api/duck/delete")
 public class DuckDeleteTest extends DuckDeleteClient {
 
-    @Test(description = "Удаление уточки")
+@Test(description = "Удаление уточки")
     @CitrusTest
     public void successfulDeleteDuck(@Optional @CitrusResource TestCaseRunner runner) {
         runner.variable("duckId", "citrus:randomNumber(6, true)");
